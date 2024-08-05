@@ -23,7 +23,6 @@ namespace Ervean.Utilities.UI
         {
             if(doOnStart)
             {
-                this.gameObject.SetActive(true);
                 StartCoroutine(DoFadeOut());
             }
         }
@@ -42,13 +41,13 @@ namespace Ervean.Utilities.UI
             while(image.color.a > .05f)
             {
                 Color color = image.color;
-                if(image.color.a >= .7f)
+                if(image.color.a >= .6f)
                 {
-                    color.a = Mathf.Lerp(image.color.a, 0f, Time.deltaTime * speed/2);
+                    color.a = Mathf.Lerp(image.color.a, 0f, Mathf.Min(Time.deltaTime * speed, Time.deltaTime * speed / 2 ));
                 }
                 else
                 {
-                    color.a = Mathf.Lerp(image.color.a, 0f, Time.deltaTime * speed);
+                    color.a = Mathf.Lerp(image.color.a, 0f, Time.deltaTime * speed * 1.5f);
                 }
                 image.color = color;
                 yield return null;
