@@ -13,8 +13,9 @@ namespace Ervean.Utilities.Player.Dash
         [Header("Settings")]
         [SerializeField] private float dashingPower = 50f;
         [SerializeField] private float dashingTime = 0.1f;
+        [SerializeField] private float secondDashPreCooldown = .5f;
         [SerializeField] private float dashingCooldown = 1f;
-        [SerializeField] private float secondDashCooldown = 1f;
+        [SerializeField] private float secondDashCooldown = 1.5f;
 
 
         private bool canDash;
@@ -55,6 +56,7 @@ namespace Ervean.Utilities.Player.Dash
             yield return new WaitForSeconds(dashingTime);
             rb.gravityScale = og;
             isDashing = false;
+            yield return new WaitForSeconds(secondDashPreCooldown);
             isSecondDash = true;
             canDash = true;
             float timer = 0;
