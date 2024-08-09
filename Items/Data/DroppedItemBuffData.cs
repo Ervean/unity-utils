@@ -7,6 +7,6 @@ namespace Ervean.Utilities.Items
     [CreateAssetMenu(fileName = "Items", menuName = "Items/Dropped/Buff")]
     public class DroppedItemBuffData : DroppedItemData
     {
- 
+    
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Ervean.NijiGame.Player
+namespace Ervean.Utilities.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
@@ -21,6 +21,14 @@ namespace Ervean.NijiGame.Player
         {
 
         }
+
+
+        public void SetDash(IDash dash)
+        {
+            if (this.dash != null) this.dash.Dispose();
+            this.dash = dash;
+        }
+
 
         private void Awake()
         {

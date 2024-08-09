@@ -8,5 +8,7 @@ namespace Ervean.Utilities.Items
     {
         [SerializeField] protected string itemName;
         [SerializeField] protected ItemData data;
+
+        public string ItemName => itemName;
     }
 }

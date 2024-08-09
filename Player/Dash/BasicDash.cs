@@ -49,5 +49,10 @@ namespace Ervean.Utilities.Player.Dash
         {
             this.rb = i.Rb;
         }
+
+        public void Dispose()
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

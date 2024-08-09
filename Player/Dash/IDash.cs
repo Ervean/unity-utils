@@ -9,6 +9,8 @@ namespace Ervean.Utilities.Player.Dash
         void Initialize(DashInitializationArgs i);
         bool CanDash { get; set; }
         bool IsDashing {  get; set; }
+
+        void Dispose();
         IEnumerator StartDash();
 
         event EventHandler<StartDashEventArgs> StartedDash;

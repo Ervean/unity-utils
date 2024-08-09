@@ -90,5 +90,10 @@ namespace Ervean.Utilities.Player.Dash
             yield return new WaitForSeconds(dashingCooldown);
             canDash = true;
         }
+
+        public void Dispose()
+        {
+            Destroy(this);
+        }
     }
 }
