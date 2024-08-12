@@ -16,14 +16,21 @@ namespace Ervean.Utilities.Talking
         [SerializeField] private GameObject textPanel;
         [SerializeField] private TMP_Text textHeader;
         [SerializeField] private TMP_Text textBody;
-        
+
+        [Header("Settings")]
+        [SerializeField] private float timerForTalk = .5f;
 
         public event EventHandler<StartedConversationEventArgs> StartConversation;
         public event EventHandler<EndedConversationEventArgs> EndConversation;
+        public event EventHandler<StartedTalkEventArgs> StartTalk;
+        public event EventHandler<EndedTalkEventArgs> EndTalk;
 
         private GameObject currentLeft;
         private GameObject currentRight;
-
+        private bool isTalking = false;
+        private TalkingSettings latestSetting = null;
+        private Queue<TalkingSettings> conversation = new Queue<TalkingSettings>();
+        private bool canAdvanceTalk = false;
 
         private void Awake()
         {
@@ -31,13 +38,41 @@ namespace Ervean.Utilities.Talking
             {
                 LeftTalker = 0,
                 Message = "hi, i am ruru",
-                RightTalker = 0,
-                PrimaryTalker = PrimaryTalker.Right
+                RightTalker = 1,
+                PrimaryTalker = PrimaryTalker.Right,
+                Chain = TalkingChain.ContinueConversation
+            });
+            Talk(new TalkingSettings()
+            {
+                LeftTalker = 0,
+                Message = "no i am ruru",
+                RightTalker = 1,
+                PrimaryTalker = PrimaryTalker.Left,
+                Chain = TalkingChain.ContinueConversation
+            });
+            Talk(new TalkingSettings()
+            {
+                LeftTalker = 0,
+                Message = "wot",
+                RightTalker = 1,
+                PrimaryTalker = PrimaryTalker.Right,
+                Chain = TalkingChain.EndConversation
             });
         }
         public void Talk(TalkingSettings s)
         {
+            if(isTalking)
+            {
+                conversation.Enqueue(s);
+                return;
+            }
+            canAdvanceTalk = false;
+            isTalking = true;
+            latestSetting = s;
+            StartConversation?.Invoke(this, new StartedConversationEventArgs());
+            StartTalk?.Invoke(this, new StartedTalkEventArgs());
             blocker.SetActive(true);
+            
             if (s.LeftTalker.HasValue)
             {
                 currentLeft = db.GetTalkerSprite(s.LeftTalker.Value, s.LeftTalkerEmotion);
@@ -92,10 +127,63 @@ namespace Ervean.Utilities.Talking
                 textPanel.SetActive(true);
             }
 
-
+            StartCoroutine(WaitTilCanAdvance(timerForTalk));
         }
+
+        public void FinishTalk()
+        {
+            if(!canAdvanceTalk)
+            {
+                return;
+            }
+            EndTalk?.Invoke(this, new EndedTalkEventArgs());
+            if (currentLeft != null)
+            {
+                Destroy(currentLeft);
+            }
+            if (currentRight != null)
+            {
+                Destroy(currentRight);
+            }
+            if (latestSetting.Chain == TalkingChain.EndConversation)
+            {
+                EndConversation?.Invoke(this, new EndedConversationEventArgs());
+                latestSetting = null;
+                isTalking = false;
+                textPanel.SetActive(false);
+                blocker.SetActive(false);
+ 
+            }
+            else if(latestSetting.Chain == TalkingChain.ContinueConversation)
+            {
+                if (conversation.Count > 0)
+                {
+                    isTalking = false;
+                    latestSetting = conversation.Dequeue();
+                    Talk(latestSetting);
+                }
+            }
+        }
+
+        private IEnumerator WaitTilCanAdvance(float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+            canAdvanceTalk = true;
+        }
+
     }
 
+
+
+    public class StartedTalkEventArgs
+    {
+
+    }
+
+    public class EndedTalkEventArgs
+    {
+
+    }
 
     public class StartedConversationEventArgs
     {
