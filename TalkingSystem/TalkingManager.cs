@@ -37,25 +37,25 @@ namespace Ervean.Utilities.Talking
             Talk(new TalkingSettings()
             {
                 LeftTalker = 0,
-                Message = "hi, i am ruru",
-                RightTalker = 1,
-                PrimaryTalker = PrimaryTalker.Right,
-                Chain = TalkingChain.ContinueConversation
-            });
-            Talk(new TalkingSettings()
-            {
-                LeftTalker = 0,
-                Message = "no i am ruru",
-                RightTalker = 1,
+                Message = "Hello! Welcome to the game, in Project N you will be able to play as me, Red and go in dungeons to collect points! These points can be used to upgrade my skills or buy items!",
+                RightTalker = 2,
                 PrimaryTalker = PrimaryTalker.Left,
                 Chain = TalkingChain.ContinueConversation
             });
             Talk(new TalkingSettings()
             {
                 LeftTalker = 0,
-                Message = "wot",
-                RightTalker = 1,
+                Message = "And I am Blue!",
+                RightTalker = 2,
                 PrimaryTalker = PrimaryTalker.Right,
+                Chain = TalkingChain.ContinueConversation
+            });
+            Talk(new TalkingSettings()
+            {
+                LeftTalker = 1,
+                Message = "Riru",
+                RightTalker = 2,
+                PrimaryTalker = PrimaryTalker.Left,
                 Chain = TalkingChain.EndConversation
             });
         }
