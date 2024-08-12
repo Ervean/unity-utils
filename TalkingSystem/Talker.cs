@@ -15,13 +15,9 @@ namespace Ervean.Utilities.Talking
         [SerializeField] private float jitterDuration = .2f;
         float timeElapsed = 0;
 
-        private Vector3 originalPosition = Vector3.zero;
         private bool isJitteringUp = false;
         private bool isJitteringDown = false;
-        private void Awake()
-        {
-            originalPosition = (transform as RectTransform).anchoredPosition;
-        }
+
 
         public void JitterUp()
         {
@@ -36,8 +32,8 @@ namespace Ervean.Utilities.Talking
             {
                 if(timeElapsed < jitterDuration/2)
                 {
-                    float y = Mathf.Lerp(originalPosition.y, originalPosition.y + jitterUpAmount, timeElapsed / jitterDuration/2);
-                    (transform as RectTransform).anchoredPosition = new Vector3(originalPosition.x, y, originalPosition.z);
+                    float y = Mathf.Lerp(0, jitterUpAmount, timeElapsed / jitterDuration/2);
+                    transform.localPosition = new Vector3(this.transform.localPosition.x, y, this.transform.localPosition.z);
                     timeElapsed += Time.deltaTime;
                 }
                 else
@@ -52,12 +48,13 @@ namespace Ervean.Utilities.Talking
             {
                 if (timeElapsed < jitterDuration / 2)
                 {
-                    float y = Mathf.Lerp(originalPosition.y + jitterUpAmount, originalPosition.y, timeElapsed / jitterDuration/2);
-                    (transform as RectTransform).anchoredPosition = new Vector3(originalPosition.x, y, originalPosition.z);
+                    float y = Mathf.Lerp(jitterUpAmount, 0, timeElapsed / jitterDuration/2);
+                    transform.localPosition = new Vector3(this.transform.localPosition.x, y, this.transform.localPosition.z);
                     timeElapsed += Time.deltaTime;
                 }
                 else
                 {
+                    transform.localPosition = new Vector3(this.transform.localPosition.x, 0, this.transform.localPosition.z);
                     isJitteringUp = false;
                     isJitteringDown = false;
                     timeElapsed = 0;    

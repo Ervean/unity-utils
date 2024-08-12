@@ -55,6 +55,16 @@ namespace Ervean.Utilities.Talking
             return null;
         }
 
+        public GameObject GetTalkerSprite(int id, TalkerEmotions e = TalkerEmotions.Default)
+        {
+            TalkerData d = GetTalker(id);
+            if(d != null)
+            {
+                return d.GetTalkingSprite(e);
+            }
+            return null;
+        }
+
         private void ProvideId(TalkerData td)
         {
             HashSet<int> ids = new HashSet<int>();
