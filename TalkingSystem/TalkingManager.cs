@@ -73,18 +73,18 @@ namespace Ervean.Utilities.Talking
             StartTalk?.Invoke(this, new StartedTalkEventArgs());
             blocker.SetActive(true);
             
-            if (s.LeftTalker.HasValue)
+            if (s.LeftTalker != -1)
             {
-                currentLeft = db.GetTalkerSprite(s.LeftTalker.Value, s.LeftTalkerEmotion);
+                currentLeft = db.GetTalkerSprite(s.LeftTalker, s.LeftTalkerEmotion);
                 if (currentLeft != null)
                 {
                     currentLeft = Instantiate(currentLeft, leftPivot);
                     currentLeft.transform.localPosition = Vector3.zero;
                 }
             }
-            if (s.RightTalker.HasValue)
+            if (s.RightTalker != -1)
             {
-                currentRight = db.GetTalkerSprite(s.RightTalker.Value, s.RightTalkerEmotion);
+                currentRight = db.GetTalkerSprite(s.RightTalker, s.RightTalkerEmotion);
                 if (currentRight != null)
                 {
                     currentRight = Instantiate(currentRight, rightPivot);
@@ -97,14 +97,14 @@ namespace Ervean.Utilities.Talking
             {
                 case PrimaryTalker.Right:
                     {
-                        talkerName = db.GetTalker(s.RightTalker.Value).TalkerName;
+                        talkerName = db.GetTalker(s.RightTalker).TalkerName;
                         textHeader.alignment = TextAlignmentOptions.Right;
                         textBody.alignment = TextAlignmentOptions.TopRight;
                         break;
                     }
                 case PrimaryTalker.Left:
                     {
-                        talkerName = db.GetTalker(s.LeftTalker.Value).TalkerName;
+                        talkerName = db.GetTalker(s.LeftTalker).TalkerName;
                         textHeader.alignment = TextAlignmentOptions.Left;
                         textBody.alignment = TextAlignmentOptions.TopLeft;
                         break;
@@ -195,11 +195,12 @@ namespace Ervean.Utilities.Talking
 
     }
 
+    [Serializable]
     public class TalkingSettings
     {
         public string Message;
-        public int? RightTalker;
-        public int? LeftTalker;
+        public int RightTalker = -1;
+        public int LeftTalker = -1;
         public PrimaryTalker PrimaryTalker = PrimaryTalker.None;
         public TalkerEmotions RightTalkerEmotion = TalkerEmotions.Default;
         public TalkerEmotions LeftTalkerEmotion = TalkerEmotions.Default;
