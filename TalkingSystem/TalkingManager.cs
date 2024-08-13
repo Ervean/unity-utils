@@ -1,3 +1,4 @@
+using Ervean.Utilities.Talking.Conversations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,31 +35,9 @@ namespace Ervean.Utilities.Talking
 
         private void Awake()
         {
-            Talk(new TalkingSettings()
-            {
-                LeftTalker = 0,
-                Message = "Hello! Welcome to the game, in Project N you will be able to play as me, Red and go in dungeons to collect points! These points can be used to upgrade my skills or buy items!",
-                RightTalker = 2,
-                PrimaryTalker = PrimaryTalker.Left,
-                Chain = TalkingChain.ContinueConversation
-            });
-            Talk(new TalkingSettings()
-            {
-                LeftTalker = 0,
-                Message = "And I am Blue!",
-                RightTalker = 2,
-                PrimaryTalker = PrimaryTalker.Right,
-                Chain = TalkingChain.ContinueConversation
-            });
-            Talk(new TalkingSettings()
-            {
-                LeftTalker = 1,
-                Message = "Riru",
-                RightTalker = 2,
-                PrimaryTalker = PrimaryTalker.Left,
-                Chain = TalkingChain.EndConversation
-            });
+            db = TalkerDatabase.instance;
         }
+
         public void Talk(TalkingSettings s)
         {
             if(isTalking)

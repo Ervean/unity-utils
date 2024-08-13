@@ -41,6 +41,18 @@ namespace Ervean.Utilities.Talking.Conversations
             }
         }
 
+        public Conversation GetConversation(int id)
+        {
+            foreach(Conversation conversation in conversations)
+            {
+                if(conversation.Id == id)
+                {
+                    return conversation;
+                }
+            }
+            return null;
+        }
+
         private void ProvideId(Conversation td)
         {
             HashSet<int> ids = new HashSet<int>();
