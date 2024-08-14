@@ -13,7 +13,7 @@ namespace Ervean.Utilities.Talking
         [SerializeField] private GameObject talkerMad;
         [SerializeField] private GameObject talkerSad;
         [SerializeField] private GameObject talkerHappy;
-
+        [SerializeField] private Color colorTheme;
 
         public int Id => id;
         public string TalkerName => talkerName;
@@ -21,6 +21,7 @@ namespace Ervean.Utilities.Talking
         public GameObject TalkerMad => talkerMad;
         public GameObject TalkerSad => talkerSad;
         public GameObject TalkerHappy => talkerHappy;
+        public Color ColorTheme => colorTheme;
 
         public GameObject GetTalkingSprite(TalkerEmotions e)
         {

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace Ervean.Utilities.Scene
 {
-    public class SceneSwitcher : Singleton<SceneSwitcher>
+    public class SceneSwitcher : MonoBehaviour
     {
         public void SwitchScene(string sceneName)
         {
