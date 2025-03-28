@@ -66,8 +66,8 @@ Shader "Ervean/Erosion"
                 fixed4 col = tex2D(_MainTex, i.uv.xy);
                 fixed4 mask = tex2D(_MaskTex, i.uv.zw);
                 //float revealAmount = smoothstep(mask.r - _Feather, mask.r + _Feather, _RevealValue);
-                float revealAmountTop = step(mask.r, _RevealValue + _Feather); 
-                float revealAmountBot = step(mask.r, _RevealValue - _Feather);
+                float revealAmountTop = step(mask.x, _RevealValue + _Feather); 
+                float revealAmountBot = step(mask.x, _RevealValue - _Feather);
                 float revealDifference = revealAmountTop - revealAmountBot;
                 float3 finalCol = lerp(col.rgb, _ErodeColor, revealDifference);
                 return fixed4(finalCol.rgb,col.a * revealAmountTop);
