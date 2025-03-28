@@ -4,12 +4,23 @@ Shader "Ervean/TextureSample"
     {
         _MainTexture("Main Texture", 2D) = "white" {}
         _AnimateXY("Animate XY", Vector) = (0,0,0,0)
+        [Enum(UnityEngine.Rendering.BlendMode)]
+        _SrcFactor("Src Factor", Float) = 5
+        [Enum(UnityEngine.Rendering.BlendMode)]
+        _DstFactor("Dst Factor", Float) = 10
+        [Enum(UnityEngine.Rendering.BlendOp)]
+        _Opp("Operation", Float) = 0
     }
     SubShader
     {
         Tags { "RenderType"="Opaque" }
         LOD 100
-        Blend SrcAlpha OneMinusSrcAlpha
+        Blend [_SrcFactor] [_DstFactor]
+        BlendOp [_Opp]
+
+        //blend formula
+        //source * fsource + destination * fdestination
+
 
         Pass
         {
@@ -34,7 +45,6 @@ Shader "Ervean/TextureSample"
             sampler2D _MainTexture;
             float4 _MainTexture_ST;
             float4 _AnimateXY;
-
             v2f vert (appdata v)
             {
                 v2f o;
