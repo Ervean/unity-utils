@@ -26,7 +26,7 @@ namespace Ervean.Utilities.SaveLoad
 #elif UNITY_WSA_10_0
             Path.Combine(Application.persistentDataPath,"cached","user_configurations");
 #elif UNITY_EDITOR
-            return Path.Combine(Application.streamingDataPath,"cached","user_configurations");
+            return Path.Combine(Application.persistentDataPath,"cached","user_configurations");
 #else
             return Path.Combine(Application.persistentDataPath,"cached","user_configurations");
 #endif
