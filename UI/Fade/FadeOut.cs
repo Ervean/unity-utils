@@ -15,7 +15,6 @@ namespace Ervean.Utilities.UI
         [SerializeField] private Image image;
 
         [Header("Settings")]
-        [SerializeField] private bool isFadeOut = true;
         [SerializeField] private float speed = 1.5f;
         [SerializeField] private bool doOnStart = true;
 

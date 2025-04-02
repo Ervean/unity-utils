@@ -7,7 +7,7 @@ namespace Ervean.Utilities.UI
 {
     public class PanelLerper : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        [Header("Required")]
+        [Header("Required")] //test
         [SerializeField] private RectTransform movingPanel;
 
         [Header("Settings")]

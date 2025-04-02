@@ -16,7 +16,7 @@ namespace Ervean.Utilities.DesignPatterns.SingletonPattern
 
         private static object _lock = new object();
 
-
+        [System.Obsolete]
         public static T instance
         {
             get

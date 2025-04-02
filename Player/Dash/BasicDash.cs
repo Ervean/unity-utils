@@ -36,7 +36,7 @@ namespace Ervean.Utilities.Player.Dash
             StartedDash?.Invoke(this, new StartDashEventArgs());
             float og = rb.gravityScale;
             rb.gravityScale = 0;
-            rb.velocity = this.transform.right * dashingPower;
+            rb.linearVelocity = this.transform.right * dashingPower;
             yield return new WaitForSeconds(dashingTime);
             rb.gravityScale = og;            
             isDashing = false;
