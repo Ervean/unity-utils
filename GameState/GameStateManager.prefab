@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6504151729647145137}
   - component: {fileID: 2951395461233651676}
+  - component: {fileID: 3968416155773784205}
+  - component: {fileID: 8225239440687139870}
   m_Layer: 0
   m_Name: GameStateManager
   m_TagString: Untagged
@@ -25,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7704544005427735465}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.4678955, y: 71.29843, z: -1.793046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,3 +49,50 @@ MonoBehaviour:
   _gameStates:
   - {fileID: 11400000, guid: 8ef328bcbb9ec9d40954785ce28470dc, type: 2}
   - {fileID: 11400000, guid: b693573d25823b64ba8b306af7777157, type: 2}
+  - {fileID: 11400000, guid: 7ae4bb0f50698864390ef38f121fc509, type: 2}
+  - {fileID: 11400000, guid: d42fc35b170872e4583e269fc94307f9, type: 2}
+  - {fileID: 11400000, guid: fab3af2cd7abb504d91b00d12191f26f, type: 2}
+--- !u!114 &3968416155773784205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7704544005427735465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43eea8efc699be4d925f9394c561610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8225239440687139870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7704544005427735465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a22f82a08c409fd4aa3ddea9b68d1ab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameStates:
+  - GameState: {fileID: 11400000, guid: fab3af2cd7abb504d91b00d12191f26f, type: 2}
+    EnterGameState:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: Ervean.Utilities.UI.FadeOut, Assembly-CSharp
+          m_MethodName: DoFadeOut
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    ExitGameState:
+      m_PersistentCalls:
+        m_Calls: []

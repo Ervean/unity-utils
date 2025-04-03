@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2639278813844198141}
   - component: {fileID: 1960668403100556305}
   m_Layer: 5
-  m_Name: FadOutBackground
+  m_Name: FadeOutBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

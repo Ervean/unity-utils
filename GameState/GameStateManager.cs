@@ -8,12 +8,16 @@ namespace Ervean.Utilities.GameStates
     public class GameStateManager : SingletonDestroy<GameStateManager>
     {
         [SerializeField] private List<GameState> _gameStates = new List<GameState>();
-
+        
         public GameState CurrentGameState { get; private set; }
         public GameState PreviousGameState { get; private set; }
         
         public event EventHandler<GameStateChangedEventArgs> GameStateChanged;
 
+        private void Start()
+        {
+            ChangeGameState("GameEntered");
+        }
         public void OnGameStateChanged(object sender, GameStateChangedEventArgs e)
         {
             GameStateChanged?.Invoke(this, e);
@@ -25,7 +29,7 @@ namespace Ervean.Utilities.GameStates
             if (gs != null)
             {
                 gs.SetPayload(payload);
-                PreviousGameState = CurrentGameState;
+                PreviousGameState = CurrentGameState != null ? CurrentGameState : gs;
                 CurrentGameState = gs;
                 OnGameStateChanged(this, new GameStateChangedEventArgs()
                 {
@@ -33,6 +37,7 @@ namespace Ervean.Utilities.GameStates
                     Previous = PreviousGameState
                 });
             }
+            Debug.Log("Game State is now " + CurrentGameState.GameStateName + ", from " + PreviousGameState.GameStateName);
         }
 
         private GameState GetGameStateByName(string name)
