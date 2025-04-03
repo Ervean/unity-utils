@@ -17,6 +17,7 @@ namespace Ervean.Utilities.UI
 
         [Header("Settings")]
         [SerializeField] private float speed = 1.5f;
+        [SerializeField] private float waitOffset = 0f;
         [SerializeField] private bool doOnStart = true;
 
         private Coroutine _fadeCoroutine;
@@ -52,6 +53,7 @@ namespace Ervean.Utilities.UI
         {
             image.enabled = true;
             FadeStarted?.Invoke();
+            yield return new WaitForSeconds(waitOffset);
             while(image.color.a > .05f)
             {
                 Color color = image.color;
