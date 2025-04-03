@@ -14,10 +14,6 @@ namespace Ervean.Utilities.GameStates
         
         public event EventHandler<GameStateChangedEventArgs> GameStateChanged;
 
-        private void Start()
-        {
-            ChangeGameState("GameEntered");
-        }
         public void OnGameStateChanged(object sender, GameStateChangedEventArgs e)
         {
             GameStateChanged?.Invoke(this, e);
