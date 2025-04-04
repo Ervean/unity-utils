@@ -36,7 +36,7 @@ namespace Ervean.Utilities.Talking
         [Obsolete]
         private void Awake()
         {
-            db = TalkerDatabase.instance;
+            db = TalkerDatabase.Instance;
         }
 
         public void Talk(TalkingSettings s)
