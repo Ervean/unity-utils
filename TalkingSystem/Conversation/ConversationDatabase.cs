@@ -8,8 +8,6 @@ namespace Ervean.Utilities.Talking.Conversations
     public class ConversationDatabase : Singleton<ConversationDatabase>
     {
         [SerializeField] private List<Conversation> conversations = new List<Conversation>();
-
-
         private void OnValidate()
         {
             HashSet<int> takenIds = new HashSet<int>();

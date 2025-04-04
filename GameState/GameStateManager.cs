@@ -32,8 +32,12 @@ namespace Ervean.Utilities.GameStates
                     Current = CurrentGameState,
                     Previous = PreviousGameState
                 });
+                Debug.Log("Game State is now " + CurrentGameState.GameStateName + ", from " + PreviousGameState.GameStateName);
             }
-            Debug.Log("Game State is now " + CurrentGameState.GameStateName + ", from " + PreviousGameState.GameStateName);
+            else
+            {
+                Debug.LogError(name + " was not found in GameStateManager");
+            }
         }
 
         private GameState GetGameStateByName(string name)

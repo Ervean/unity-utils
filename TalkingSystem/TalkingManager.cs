@@ -38,6 +38,17 @@ namespace Ervean.Utilities.Talking
             db = TalkerDatabase.Instance;
         }
 
+        public void Talk(Conversation conversation)
+        {
+            Talk(conversation.Talking);
+        }
+        public void Talk(List<TalkingSettings> settings)
+        {
+            foreach (TalkingSettings s in settings)
+            {
+                Talk(s);
+            }
+        }
         public void Talk(TalkingSettings s)
         {
             if(isTalking)

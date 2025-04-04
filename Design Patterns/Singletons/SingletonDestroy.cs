@@ -36,7 +36,7 @@ namespace Ervean.Utilities.DesignPatterns.SingletonPattern
                     {
                         _instance = (T)Object.FindFirstObjectByType(typeof(T));
 
-                        if (Object.FindFirstObjectByType(typeof(T)) != null)
+                        if (Object.FindObjectsByType(typeof(T), FindObjectsSortMode.InstanceID).Length > 1)
                         {
                             Debug.LogError("[Singleton] Something went really wrong " +
                                 " - there should never be more than 1 singleton!" +
