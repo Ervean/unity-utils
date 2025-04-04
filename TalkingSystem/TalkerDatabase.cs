@@ -8,12 +8,9 @@ namespace Ervean.Utilities.Talking
     {
         [SerializeField] private List<TalkerData> talkers;
 
-
         private void OnValidate()
         {
             HashSet<int> takenIds = new HashSet<int>();
-
-
 
             if (talkers != null && talkers.Count > 0)
             {

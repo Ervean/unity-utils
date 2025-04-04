@@ -7,8 +7,6 @@ namespace Ervean.Utilities.SaveLoad
     [Serializable]
     public class UserConfigurationData
     {
- 
-
         /// <summary>
         /// General Master volume for application, doesnt affect other items that live on their own volume like videos
         /// </summary>

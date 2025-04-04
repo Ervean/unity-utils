@@ -10,11 +10,6 @@ namespace Ervean.Utilities
     {
         [SerializeField] private GameObject target;
 
-        [Header("Settings")]
-        [SerializeField] private float speed = 1f;
-        [SerializeField] private bool isFollowing = false;
-
-
 
         private void FixedUpdate()
         {

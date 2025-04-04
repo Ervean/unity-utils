@@ -16,8 +16,7 @@ namespace Ervean.Utilities.DesignPatterns.SingletonPattern
 
         private static object _lock = new object();
 
-
-        public static T instance
+        public static T Instance
         {
             get
             {
@@ -33,9 +32,9 @@ namespace Ervean.Utilities.DesignPatterns.SingletonPattern
                 {
                     if (_instance == null)
                     {
-                        _instance = (T)FindObjectOfType(typeof(T));
+                        _instance = (T)FindFirstObjectByType(typeof(T));
 
-                        if (FindObjectsOfType(typeof(T)).Length > 1)
+                        if (Object.FindFirstObjectByType(typeof(T)) != null)
                         {
                             Debug.LogError("[Singleton] Something went really wrong " +
                                 " - there should never be more than 1 singleton!" +
