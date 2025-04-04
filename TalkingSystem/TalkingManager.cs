@@ -33,7 +33,6 @@ namespace Ervean.Utilities.Talking
         private Queue<TalkingSettings> conversation = new Queue<TalkingSettings>();
         private bool canAdvanceTalk = false;
 
-        [Obsolete]
         private void Awake()
         {
             db = TalkerDatabase.Instance;
