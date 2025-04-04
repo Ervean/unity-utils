@@ -69,8 +69,8 @@ namespace Ervean.Utilities.Player
 
         private void Move()
         {
-            rb.velocity = new Vector2(moveDirection.x * moveSpeedX, moveDirection.y * moveSpeedY);
-            Vector2 moveDirection2 = rb.velocity;
+            rb.linearVelocity = new Vector2(moveDirection.x * moveSpeedX, moveDirection.y * moveSpeedY);
+            Vector2 moveDirection2 = rb.linearVelocity;
             if (moveDirection2 != Vector2.zero)
             {
                 float angle = Mathf.Atan2(moveDirection2.y, moveDirection2.x) * Mathf.Rad2Deg;

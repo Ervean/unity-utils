@@ -10,11 +10,8 @@ namespace Ervean.Utilities.Talking.Conversations
         [SerializeField] private int id;
         [SerializeField] private List<TalkingSettings> settings = new List<TalkingSettings>();
 
-
-
         public int Id => id;
         public List<TalkingSettings> Talking => settings;
-
         public void SetId(int id)
         {
             this.id = id;

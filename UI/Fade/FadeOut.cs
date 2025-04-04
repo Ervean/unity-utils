@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Ervean.Utilities.UI
@@ -15,15 +16,21 @@ namespace Ervean.Utilities.UI
         [SerializeField] private Image image;
 
         [Header("Settings")]
-        [SerializeField] private bool isFadeOut = true;
         [SerializeField] private float speed = 1.5f;
+        [SerializeField] private float waitOffset = 0f;
         [SerializeField] private bool doOnStart = true;
+
+        private Coroutine _fadeCoroutine;
+
+        public UnityEvent FadeStarted;
+        public UnityEvent FadeCompleted;
+
 
         private void Awake()
         {
             if(doOnStart)
             {
-                StartCoroutine(DoFadeOut());
+                DoFadeOut();
             }
         }
 
@@ -35,9 +42,18 @@ namespace Ervean.Utilities.UI
             }
         }
 
-        public IEnumerator DoFadeOut()
+        public void DoFadeOut()
+        {
+            if (_fadeCoroutine != null) return;
+            this.gameObject.SetActive(true);
+            _fadeCoroutine = StartCoroutine(DoFadeOutEnumerator());
+        }
+
+        private IEnumerator DoFadeOutEnumerator()
         {
             image.enabled = true;
+            FadeStarted?.Invoke();
+            yield return new WaitForSeconds(waitOffset);
             while(image.color.a > .05f)
             {
                 Color color = image.color;
@@ -52,7 +68,10 @@ namespace Ervean.Utilities.UI
                 image.color = color;
                 yield return null;
             }
+            FadeCompleted?.Invoke();
             image.enabled = false;
+            this.gameObject.SetActive(false);
+            _fadeCoroutine = null;
         }
 
         
