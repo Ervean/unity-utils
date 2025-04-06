@@ -5,6 +5,10 @@ using UnityEngine;
 
 namespace Ervean.Utilities.Score
 {
+    /// <summary>
+    /// Uses the Observer design pattern to have IScorables listen to the subject
+    /// When a change gets updated, observers can be notified
+    /// </summary>
     public class ScoreManager : Singleton<ScoreManager>
     {
         private List<IScorable> _scores = new List<IScorable>();
