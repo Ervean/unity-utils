@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Ervean.Utilities.GameStates
 {
+    /// <summary>
+    /// Game State manager that controls the available game states in the game
+    /// </summary>
     public class GameStateManager : SingletonDestroy<GameStateManager>
     {
         [SerializeField] private List<GameState> _gameStates = new List<GameState>();
@@ -32,7 +35,7 @@ namespace Ervean.Utilities.GameStates
                     Current = CurrentGameState,
                     Previous = PreviousGameState
                 });
-                Debug.Log("Game State is now " + CurrentGameState.GameStateName + ", from " + PreviousGameState.GameStateName);
+               // Debug.Log("Game State is now " + CurrentGameState.GameStateName + ", from " + PreviousGameState.GameStateName);
             }
             else
             {

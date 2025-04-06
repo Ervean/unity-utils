@@ -17,6 +17,7 @@ namespace Ervean.Utilities.GameStates
         private Dictionary<GameState, ConversationGameStateRoute> _map = new Dictionary<GameState, ConversationGameStateRoute>();
         private ConversationDatabase _database;
         private GameState _current;
+
         private void Awake()
         {
             _database = ConversationDatabase.Instance;
@@ -34,14 +35,16 @@ namespace Ervean.Utilities.GameStates
                 GameStateManager.Instance.GameStateChanged -= Instance_GameStateChanged;
             }
         }
+
         private void Instance_GameStateChanged(object sender, GameStateChangedEventArgs e)
         {
+            // if game state enters where one of my conversations starts 
             if(_map.ContainsKey(e.Current))
             {
                 _current = e.Current;
-                _talkingManager.EndConversation += _talkingManager_EndConversation;
+                _talkingManager.EndConversation += _talkingManager_EndConversation; // listen to when conversation ends
                 Conversation conversation = _database.GetConversation(_map[e.Current].ConversationId);
-                _talkingManager.Talk(conversation);
+                _talkingManager.Talk(conversation);  // start conversation
             }
         }
 
@@ -49,7 +52,7 @@ namespace Ervean.Utilities.GameStates
         {
             _talkingManager.EndConversation -= _talkingManager_EndConversation;
 
-            GameStateManager.Instance.ChangeGameState(_map[_current].Outgoing.GameStateName);
+            GameStateManager.Instance.ChangeGameState(_map[_current].Outgoing.GameStateName); // conversation ends, changing gamestate appropriately
         }
     }
 
